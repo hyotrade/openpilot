@@ -7,13 +7,10 @@ export PYTHONPATH=/data/openpilot
 
 cd /data/openpilot
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-LOCAL_HASH=$(git rev-parse --short HEAD)
 /data/data/com.termux/files/usr/bin/git fetch --all
 /data/data/com.termux/files/usr/bin/git reset --hard HEAD
 /data/data/com.termux/files/usr/bin/git pull
 REMOTE_HASH=$(git rev-parse --short --verify origin/$BRANCH)
 /data/data/com.termux/files/usr/bin/git reset --hard $REMOTE_HASH
 
-if [ "$LOCAL_HASH" == "$REMOTE_HASH" ]; then
-  reboot
-fi
+reboot
